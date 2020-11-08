@@ -8,6 +8,7 @@ using ExitGames.Client.Photon;
 public class NetworkMgr : MonoBehaviourPunCallbacks
 {
     private string _playerName;
+    logManager lm;
 
     public string playerName
     {
