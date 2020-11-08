@@ -97,6 +97,11 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
+    private void Start()
+    {
+        lm = GameObject.FindGameObjectWithTag("LM").GetComponent<logManager>();
+    }
+
     /// <summary>
     /// My custom function that will connect to the server
     /// </summary>
@@ -134,6 +139,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + " got connected");
+        //lm.updateLog()
         waitingToConnectPanel.SetActive(false);
         gamelobbyOptionsPanel.SetActive(true);
 
@@ -167,6 +173,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
         if(string.IsNullOrEmpty(roomName))
         {
             Debug.Log("<color=red> Room name not entered. Cannot create a room. </color>");
+            lm.updateLog("Room name not entered. Cannot create a room.");
             return;
         }
         if(string.IsNullOrEmpty(_gameMode))
