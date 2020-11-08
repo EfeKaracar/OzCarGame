@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviourPun
     //key=a car's gameObject reference in the scene
     //value=the rank of that car
     public List<GO_ID_Duo> playerRanks;
+    private int selectedCar;
 
     /// <summary>
     /// these are the possible event codes for all of our events that could occur in our game
@@ -52,8 +53,12 @@ public class GameManager : MonoBehaviourPun
 
     private void Awake()
     {
-        if (instance == null) instance = this;
-        else if(instance!=this)
+        if (instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
@@ -72,6 +77,7 @@ public class GameManager : MonoBehaviourPun
     /// </summary>
     public List<GameObject> playerPrefabs;
 
+    //public int carNo = 0;
 
     [HideInInspector]
     public GameObject myCarInstance;
@@ -79,6 +85,7 @@ public class GameManager : MonoBehaviourPun
     // Use this for initialization
     void Start()
     {
+        selectedCar = GameObject.FindGameObjectWithTag("carManager").GetComponent<selectCar>().carNo;
         //proceed instantiating the car only if we are connected to photon and ready
         if(!PhotonNetwork.IsConnectedAndReady)
         {
@@ -100,7 +107,7 @@ public class GameManager : MonoBehaviourPun
 
             ///notice we use 'PhotonNetwork.Instantiate' instead of regular 'Instantiate'
             ///Also notice we use
-            myCarInstance = PhotonNetwork.Instantiate(playerPrefabs[0].name, startPos, Quaternion.identity);
+            myCarInstance = PhotonNetwork.Instantiate(playerPrefabs[selectedCar].name, startPos, Quaternion.identity);
 
 
 

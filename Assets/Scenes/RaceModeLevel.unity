@@ -2784,6 +2784,8 @@ MonoBehaviour:
   - {fileID: 969788840}
   playerPrefabs:
   - {fileID: 523779623789243299, guid: f304bc8a41880644a868f7f73c42072f, type: 3}
+  - {fileID: 523779623789243299, guid: 79393e7005cd0524ab573bb593ab5de2, type: 3}
+  carNo: 0
   myCarInstance: {fileID: 0}
 --- !u!4 &1187537864
 Transform:
