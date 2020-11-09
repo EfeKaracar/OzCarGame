@@ -86,6 +86,8 @@
     <Compile Include="Assets\Scripts\PlayerSync.cs" />
     <Compile Include="Assets\Scripts\carSO.cs" />
     <Compile Include="Assets\Scripts\logManager.cs" />
+    <Compile Include="Assets\Scripts\roomListing.cs" />
+    <Compile Include="Assets\Scripts\roomManager.cs" />
     <Compile Include="Assets\Scripts\selectCar.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />

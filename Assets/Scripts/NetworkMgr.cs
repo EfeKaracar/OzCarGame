@@ -112,6 +112,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.LocalPlayer.NickName = playerName;
             PhotonNetwork.ConnectUsingSettings();
+            lm.updateLog("Connected.");
         }
     }
 
@@ -124,6 +125,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
         if(string.IsNullOrEmpty(playerName))
         {
             Debug.Log("<color=red> Player name not entered. Can't connect to server without it.</color>");
+            lm.updateLog("Player name not entered. Cannot connect to server without it.");
             return;
         }
        // else
@@ -133,15 +135,19 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
 
     public override void OnConnected()
     {
-        Debug.Log("Connection established with Photon"); 
+        Debug.Log("Connection established with Photon");
+        lm.updateLog("Connection established with Photon");
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + " got connected");
+        lm.updateLog(PhotonNetwork.LocalPlayer.NickName + " got connected");
         //lm.updateLog()
         waitingToConnectPanel.SetActive(false);
         gamelobbyOptionsPanel.SetActive(true);
+
+        PhotonNetwork.JoinLobby();
 
     }
 
@@ -179,6 +185,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
         if(string.IsNullOrEmpty(_gameMode))
         {
             Debug.Log("<color=red> Game mode not selected.. cannot create a room. </color>");
+            lm.updateLog("Game mode not selected.. cannot create a room.");
             return;
         }
 
@@ -213,6 +220,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
     {
 
         Debug.Log("<color=green> Room created successfully...</color>");
+        lm.updateLog("Room created successfully...");
         creatingRoomPanel.SetActive(false);
         roomUserPanel.SetActive(true);
 
@@ -224,7 +232,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
         roomUserPanel.SetActive(true);
 
         Debug.Log("<color=cyan> User:  " + PhotonNetwork.LocalPlayer.NickName + " joined " + PhotonNetwork.CurrentRoom.Name + " </color>");
-
+        lm.updateLog("User:  " + PhotonNetwork.LocalPlayer.NickName + " joined " + PhotonNetwork.CurrentRoom.Name);
         //We need to print certain info in the room.. such as room name, room game mode type, and list of players currently in room...
 
         roomInfoTxt.text = PhotonNetwork.CurrentRoom.Name + " ||| Players:  " + PhotonNetwork.CurrentRoom.PlayerCount + "/" +
@@ -293,6 +301,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         Debug.Log("<color=red> Create room failed: error code: " + returnCode + "\n msg=" + message);
+        lm.updateLog("Create room failed: error code: " + returnCode + "\n msg=" + message);
     }
 
 
@@ -332,6 +341,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
 
 
         Debug.Log("<color=orange> Trying to find a random room of gameMode type=" + gameModeCode + " </color>");
+        lm.updateLog("Trying to find a random room of gameMode type=" + gameModeCode);
 
         ExitGames.Client.Photon.Hashtable expectedProperties = new ExitGames.Client.Photon.Hashtable
         {
@@ -347,8 +357,9 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
     {
 
         Debug.Log("<color=red>Join random room failed with message = " + message+"</color>");
+        lm.updateLog("Join random room failed with message = " + message);
 
-       Transform failedPanelTrans= joiningRoomPanel.transform.Find("FailedPanel");
+        Transform failedPanelTrans= joiningRoomPanel.transform.Find("FailedPanel");
         if (failedPanelTrans != null)
         {
             failedPanelTrans.gameObject.SetActive(true);
@@ -435,6 +446,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
             else
             {
                 Debug.Log("Didn't recognize the game mode code: " + gameModeCode);
+                lm.updateLog("Didn't recognize the game mode code: " + gameModeCode);
                 //For your project, you will show the errors/warnings in a proper dialog window (like we did for the error message in 'JoiningRoom' panel.
             }
 
@@ -442,7 +454,8 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
         }
         else
         {
-            Debug.Log("can't find 'm' property in the room. ");
+            Debug.Log("Can't find 'm' property in the room. ");
+            lm.updateLog("Can't find 'm' property in the room.");
         }
 
 

@@ -82,14 +82,19 @@ public class GameManager : MonoBehaviourPun
     [HideInInspector]
     public GameObject myCarInstance;
 
+    logManager lm;
+
     // Use this for initialization
     void Start()
     {
+        lm = GameObject.FindGameObjectWithTag("LM").GetComponent<logManager>();
+
         selectedCar = GameObject.FindGameObjectWithTag("carManager").GetComponent<selectCar>().carNo;
         //proceed instantiating the car only if we are connected to photon and ready
         if(!PhotonNetwork.IsConnectedAndReady)
         {
             Debug.Log("<color=red> Not connected to photon network. can't proceed. </color>");
+            lm.updateLog(" Not connected to photon network. can't proceed.");
         }
         else
         {
