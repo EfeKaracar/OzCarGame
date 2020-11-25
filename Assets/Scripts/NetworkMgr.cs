@@ -470,6 +470,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
     {
 
         PhotonNetwork.LeaveRoom();
+        lm.updateLog("Left the server.");
         
     }
 
