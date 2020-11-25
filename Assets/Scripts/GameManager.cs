@@ -4,10 +4,13 @@ using Photon.Pun;
 using ExitGames.Client.Photon;
 using System.Linq;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class GO_ID_Duo
 {
+ 
+
     public PhotonView pv { get => go.GetComponent<PhotonView>(); }
     public int rank;
     public GameObject go;
@@ -19,7 +22,7 @@ public class GO_ID_Duo
 public class GameManager : MonoBehaviourPun
 {
     private int lastAssignedRank = 0;
-
+    public GameObject endText;
 
     //key=a car's gameObject reference in the scene
     //value=the rank of that car
@@ -167,9 +170,18 @@ public class GameManager : MonoBehaviourPun
             standingsUIList[duo.rank - 1].gameObject.SetActive(true);
 
             standingsUIList[duo.rank - 1].UpdateInfo(duo.pv.Owner.NickName, duo.rank,viewID==duo.viewID);
+
+            endText.SetActive(true);
+
         }
 
 
+    }
+
+
+    public void finishRace()
+    {
+        SceneManager.LoadScene("MainLobbyV2");
     }
 
 
