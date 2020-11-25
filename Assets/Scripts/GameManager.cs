@@ -182,6 +182,8 @@ public class GameManager : MonoBehaviourPun
     public void finishRace()
     {
         SceneManager.LoadScene("MainLobbyV2");
+        PhotonNetwork.Disconnect();
+
     }
 
 
