@@ -25,6 +25,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.Utilities.dll:
     - Photon.Pun.UtilityScripts.TextButtonTransition
     PhotonUnityNetworking.dll:
@@ -1767,4 +1769,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainLobbyV2.unity
   - Assets/Scenes/RaceModeLevel.unity
   - Assets/Scenes/DeathModeLevel.unity
-  playerPath: C:/Users/E/Desktop/OzCarGame/OzCarGame/builds/OzCarGame.exe
+  playerPath: C:/Users/E/Desktop/OzCarGame/OzCarGame/Builds/OzCarGame.exe
