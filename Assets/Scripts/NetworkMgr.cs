@@ -471,7 +471,13 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
 
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.CurrentRoom.IsOpen = false;
-        lm.updateLog("Left the server.");
+
+        foreach(GameObject t in playerListHolder)
+        {
+            Destroy(t);
+        }
+
+        lm.updateLog("Left the server. Server has closed.");
         
     }
 
