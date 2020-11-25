@@ -273,6 +273,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
     private void CreatePlayerListItem(Player newPlayer)
     {
         item = Instantiate(playerListItemPrefab, playerListHolder);
+        
         item.GetComponent<PlayerItemUIInfo>().Init(newPlayer.ActorNumber, newPlayer.NickName);
 
         playerDictGOs.Add(newPlayer.ActorNumber, item);
@@ -467,7 +468,11 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
 
     public void leaveServer()
     {
-        Destroy(item);
+     
+        if(PhotonNetwork.CurrentRoom.PlayerCount != playerListHolder.childCount)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
         
     }
 
