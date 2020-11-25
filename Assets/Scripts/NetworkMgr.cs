@@ -10,6 +10,8 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
     private string _playerName;
     logManager lm;
 
+    GameObject item;
+
     public string playerName
     {
 
@@ -270,7 +272,7 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
 
     private void CreatePlayerListItem(Player newPlayer)
     {
-        GameObject item = Instantiate(playerListItemPrefab, playerListHolder);
+        item = Instantiate(playerListItemPrefab, playerListHolder);
         item.GetComponent<PlayerItemUIInfo>().Init(newPlayer.ActorNumber, newPlayer.NickName);
 
         playerDictGOs.Add(newPlayer.ActorNumber, item);
@@ -462,5 +464,11 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
     }
 
     #endregion
+
+    public void leaveServer()
+    {
+        Destroy(item);
+        
+    }
 
 }
