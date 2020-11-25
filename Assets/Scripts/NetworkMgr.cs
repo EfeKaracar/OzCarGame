@@ -468,11 +468,8 @@ public class NetworkMgr : MonoBehaviourPunCallbacks
 
     public void leaveServer()
     {
-     
-        if(PhotonNetwork.CurrentRoom.PlayerCount != playerListHolder.childCount)
-        {
-            PhotonNetwork.CurrentRoom.IsOpen = false;
-        }
+
+        PhotonNetwork.LeaveRoom();
         
     }
 
